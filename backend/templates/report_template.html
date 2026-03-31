@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>TruthLens ESG Forensic Report — {{ company_name }}</title>
+<style>
+/* ─── Core typography & resets ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10pt;
+  color: #1a1a2e;
+  line-height: 1.5;
+}
+
+/* ─── Page setup ────────────────────────────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 0;
+}
+@page cover    { margin: 0; }
+@page content  { margin: 22mm 18mm 22mm 18mm; }
+@page evidence { margin: 18mm 16mm 18mm 16mm; }
+
+.page-cover    { page: cover;    page-break-after: always; }
+.page-content  { page: content;  page-break-after: always; }
+.page-evidence { page: evidence; page-break-after: always; }
+.page-appendix { page: content; }
+
+/* ─── COVER ─────────────────────────────────────────────────────────────── */
+.cover {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(160deg, #0f0f23 0%, #1a1a3e 55%, #0d1b4b 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-accent-bar {
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #4f8ef7 0%, #a78bfa 50%, #34d399 100%);
+}
+
+.cover-header {
+  padding: 40px 50px 0 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cover-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cover-logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #4f8ef7, #a78bfa);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 900;
+  color: white;
+}
+
+.cover-logo-text {
+  font-size: 22pt;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.cover-logo-text span {
+  color: #4f8ef7;
+}
+
+.cover-classification {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 2px;
+  padding: 5px 14px;
+  border-radius: 4px;
+}
+
+.cover-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 50px;
+}
+
+.cover-eyebrow {
+  font-size: 9pt;
+  font-weight: 500;
+  color: #94a3b8;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cover-company {
+  font-size: 38pt;
+  font-weight: 900;
+  color: white;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.cover-industry {
+  font-size: 14pt;
+  font-weight: 400;
+  color: #94a3b8;
+  margin-bottom: 40px;
+}
+
+.cover-meta-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.cover-meta-item label {
+  display: block;
+  font-size: 7.5pt;
+  font-weight: 500;
+  color: #64748b;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.cover-meta-item span {
+  font-size: 10pt;
+  font-weight: 500;
+  color: #cbd5e1;
+}
+
+/* Verdict banner */
+.cover-verdict {
+  width: calc(100% + 100px);
+  margin-left: -50px;
+  padding: 22px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cover-verdict.high-integrity    { background: #14532d; }
+.cover-verdict.moderate-integrity { background: #78350f; }
+.cover-verdict.low-integrity     { background: #7f1d1d; }
+.cover-verdict.critical-risk     { background: #450a0a; }
+
+.verdict-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.verdict-label-small {
+  font-size: 7.5pt;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  opacity: 0.7;
+}
+.cover-verdict.high-integrity    .verdict-label-small { color: #86efac; }
+.cover-verdict.moderate-integrity .verdict-label-small { color: #fcd34d; }
+.cover-verdict.low-integrity     .verdict-label-small { color: #fca5a5; }
+.cover-verdict.critical-risk     .verdict-label-small { color: #f87171; }
+
+.verdict-label-main {
+  font-size: 20pt;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.cover-verdict.high-integrity    .verdict-label-main { color: #4ade80; }
+.cover-verdict.moderate-integrity .verdict-label-main { color: #fbbf24; }
+.cover-verdict.low-integrity     .verdict-label-main { color: #f87171; }
+.cover-verdict.critical-risk     .verdict-label-main { color: #ef4444; }
+
+.verdict-score {
+  font-size: 52pt;
+  font-weight: 900;
+  line-height: 1;
+}
+.cover-verdict.high-integrity    .verdict-score { color: #4ade80; }
+.cover-verdict.moderate-integrity .verdict-score { color: #fbbf24; }
+.cover-verdict.low-integrity     .verdict-score { color: #f87171; }
+.cover-verdict.critical-risk     .verdict-score { color: #ef4444; }
+
+.verdict-score-label {
+  font-size: 9pt;
+  opacity: 0.6;
+  color: white;
+  text-align: right;
+}
+
+.cover-footer {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.cover-footer-text {
+  font-size: 7.5pt;
+  color: #475569;
+}
+
+/* ─── SECTION HEADERS ───────────────────────────────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.section-number {
+  width: 32px;
+  height: 32px;
+  background: #1a1a3e;
+  color: white;
+  font-size: 11pt;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: 16pt;
+  font-weight: 700;
+  color: #1a1a3e;
+  letter-spacing: -0.3px;
+}
+
+.section-subtitle {
+  font-size: 8.5pt;
+  color: #94a3b8;
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+/* ─── SCORE DISPLAY ─────────────────────────────────────────────────────── */
+.score-hero {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 24px 30px;
+  margin-bottom: 24px;
+}
+
+.score-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 4px solid;
+}
+
+.score-circle.high-integrity    { border-color: #16a34a; background: #f0fdf4; }
+.score-circle.moderate-integrity { border-color: #d97706; background: #fffbeb; }
+.score-circle.low-integrity     { border-color: #dc2626; background: #fef2f2; }
+.score-circle.critical-risk     { border-color: #991b1b; background: #fef2f2; }
+
+.score-number {
+  font-size: 28pt;
+  font-weight: 900;
+  line-height: 1;
+}
+.score-circle.high-integrity    .score-number { color: #16a34a; }
+.score-circle.moderate-integrity .score-number { color: #d97706; }
+.score-circle.low-integrity     .score-number { color: #dc2626; }
+.score-circle.critical-risk     .score-number { color: #991b1b; }
+
+.score-denom {
+  font-size: 9pt;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.score-info {
+  flex: 1;
+}
+
+.score-label-badge {
+  display: inline-block;
+  font-size: 9pt;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+.score-label-badge.high-integrity    { background: #dcfce7; color: #15803d; }
+.score-label-badge.moderate-integrity { background: #fef3c7; color: #b45309; }
+.score-label-badge.low-integrity     { background: #fee2e2; color: #b91c1c; }
+.score-label-badge.critical-risk     { background: #fee2e2; color: #991b1b; }
+
+.score-summary-text {
+  font-size: 9.5pt;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 380px;
+}
+
+/* ─── TABLES ────────────────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.stats-table td {
+  padding: 14px 18px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.stats-table tr:first-child td {
+  font-size: 7.5pt;
+  font-weight: 600;
+  color: #94a3b8;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: #f8fafc;
+}
+
+.stats-table tr:last-child td {
+  font-size: 18pt;
+  font-weight: 800;
+  color: #1a1a3e;
+}
+
+.stats-table tr:last-child td:nth-child(2) { color: #dc2626; }
+.stats-table tr:last-child td:nth-child(3) { color: #d97706; }
+
+.data-table th {
+  background: #1a1a3e;
+  color: white;
+  font-size: 8pt;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 9.5pt;
+  color: #334155;
+  vertical-align: top;
+}
+
+.data-table tr:nth-child(even) td { background: #f8fafc; }
+
+/* ─── CATEGORY SCORE BARS ───────────────────────────────────────────────── */
+.cat-bar-wrap {
+  margin-bottom: 14px;
+}
+
+.cat-bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.cat-bar-name {
+  font-size: 9.5pt;
+  font-weight: 600;
+  color: #1a1a3e;
+}
+
+.cat-bar-score {
+  font-size: 11pt;
+  font-weight: 800;
+}
+
+.cat-bar-track {
+  width: 100%;
+  height: 10px;
+  background: #e2e8f0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.cat-bar-fill {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s;
+}
+
+/* ─── SCORE CALC TRANSPARENCY ───────────────────────────────────────────── */
+.score-calc-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+}
+
+.score-calc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 9.5pt;
+}
+
+.score-calc-row:last-child { border-bottom: none; font-weight: 700; font-size: 10.5pt; }
+
+.score-calc-label { color: #475569; }
+.score-calc-value { font-weight: 600; }
+.score-calc-value.neg { color: #dc2626; }
+.score-calc-value.pos { color: #16a34a; }
+.score-calc-value.final { color: #1a1a3e; font-size: 12pt; }
+
+/* ─── EVIDENCE CARDS ────────────────────────────────────────────────────── */
+.evidence-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.evidence-card-title {
+  font-size: 13pt;
+  font-weight: 700;
+  color: #1a1a3e;
+}
+
+.evidence-card-subtitle {
+  font-size: 8.5pt;
+  color: #94a3b8;
+  margin-top: 3px;
+}
+
+.severity-badge {
+  display: inline-block;
+  font-size: 8.5pt;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.severity-badge.CRITICAL { background: #fef2f2; color: #991b1b; border: 1.5px solid #fca5a5; }
+.severity-badge.HIGH     { background: #fff7ed; color: #c2410c; border: 1.5px solid #fdba74; }
+.severity-badge.MEDIUM   { background: #fffbeb; color: #b45309; border: 1.5px solid #fcd34d; }
+.severity-badge.LOW      { background: #f0fdf4; color: #15803d; border: 1.5px solid #86efac; }
+
+.claim-box {
+  background: #fffbeb;
+  border-left: 4px solid #f59e0b;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.evidence-box {
+  background: #fef2f2;
+  border-left: 4px solid #ef4444;
+  border-radius: 0 8px 8px 0;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+}
+
+.claim-box-label, .evidence-box-label {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.claim-box-label    { color: #b45309; }
+.evidence-box-label { color: #b91c1c; }
+
+.claim-quote {
+  font-size: 9.5pt;
+  color: #1a1a2e;
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.claim-source {
+  font-size: 8pt;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.claim-source span {
+  display: inline-block;
+  background: #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+.analysis-box {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+}
+
+.analysis-box-label {
+  font-size: 7.5pt;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0369a1;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.analysis-text {
+  font-size: 9.5pt;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.regulation-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 8.5pt;
+  color: #64748b;
+  margin-top: 8px;
+}
+
+.regulation-tag {
+  display: inline-block;
+  background: #ede9fe;
+  color: #6d28d9;
+  font-size: 7.5pt;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── FINDINGS LIST ─────────────────────────────────────────────────────── */
+.findings-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.findings-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 9.5pt;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.findings-list li:last-child { border-bottom: none; }
+
+.finding-num {
+  width: 22px;
+  height: 22px;
+  background: #1a1a3e;
+  color: white;
+  font-size: 8pt;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ─── RECOMMENDATIONS ───────────────────────────────────────────────────── */
+.rec-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.rec-item:last-child { border-bottom: none; }
+
+.rec-priority {
+  display: inline-block;
+  font-size: 7pt;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  height: fit-content;
+  margin-top: 2px;
+}
+
+.rec-priority.CRITICAL { background: #fee2e2; color: #991b1b; }
+.rec-priority.HIGH     { background: #fff7ed; color: #c2410c; }
+.rec-priority.MEDIUM   { background: #fffbeb; color: #b45309; }
+.rec-priority.LOW      { background: #f0fdf4; color: #15803d; }
+
+.rec-body { flex: 1; }
+.rec-area  { font-size: 8.5pt; font-weight: 700; color: #1a1a3e; margin-bottom: 3px; }
+.rec-text  { font-size: 8.5pt; color: #475569; line-height: 1.5; }
+.rec-gain  { font-size: 8pt; color: #4f8ef7; font-weight: 600; margin-top: 3px; }
+
+/* ─── APPENDIX ──────────────────────────────────────────────────────────── */
+.appendix-header {
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.appendix-tag {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 8pt;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.appendix-title {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #1a1a3e;
+}
+
+/* ─── RUNNING FOOTER (content pages) ───────────────────────────────────── */
+.page-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 14mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18mm;
+  border-top: 1px solid #e2e8f0;
+  font-size: 7.5pt;
+  color: #94a3b8;
+}
+
+.page-footer strong { color: #475569; }
+
+/* ─── UTILITIES ─────────────────────────────────────────────────────────── */
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.text-muted { color: #94a3b8; font-size: 9pt; }
+.divider { border: none; border-top: 1px solid #e2e8f0; margin: 20px 0; }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 1 — COVER
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page-cover">
+<div class="cover">
+  <div class="cover-accent-bar"></div>
+
+  <div class="cover-header">
+    <div class="cover-logo">
+      <div class="cover-logo-icon">T</div>
+      <div class="cover-logo-text">Truth<span>Lens</span> AI</div>
+    </div>
+    <div class="cover-classification">⬤ &nbsp;CONFIDENTIAL</div>
+  </div>
+
+  <div class="cover-body">
+    <div class="cover-eyebrow">ESG Forensic Intelligence Report</div>
+    <div class="cover-company">{{ company_name }}</div>
+    <div class="cover-industry">{{ industry }}</div>
+
+    <div class="cover-meta-row">
+      <div class="cover-meta-item">
+        <label>Audit Date</label>
+        <span>{{ audit_date }}</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Audit ID</label>
+        <span>{{ audit_id[:8] | upper }}…</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Report Year</label>
+        <span>{{ report_year }}</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Generated By</label>
+        <span>TruthLens AI v1.0</span>
+      </div>
+    </div>
+
+    <div class="cover-verdict {{ verdict_class }}">
+      <div class="verdict-left">
+        <div class="verdict-label-small">Overall Verdict</div>
+        <div class="verdict-label-main">{{ integrity_label }}</div>
+      </div>
+      <div>
+        <div class="verdict-score">{{ overall_score }}</div>
+        <div class="verdict-score-label">/ 100</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <span class="cover-footer-text">
+      This report is generated by TruthLens AI and is intended solely for the named recipient.
+      Unauthorised distribution is strictly prohibited.
+    </span>
+    <span class="cover-footer-text">© {{ audit_date[:4] }} TruthLens AI</span>
+  </div>
+</div>
+</div>
+
+<!-- Shared running footer for content pages -->
+<div class="page-footer">
+  <span><strong>TruthLens AI</strong> — ESG Forensic Report &nbsp;|&nbsp; {{ company_name }} &nbsp;|&nbsp; {{ audit_date }}</span>
+  <span>CONFIDENTIAL</span>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 2 — EXECUTIVE SUMMARY
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page-content">
+  <div class="section-header">
+    <div class="section-number">1</div>
+    <div>
+      <div class="section-title">Executive Summary</div>
+      <div class="section-subtitle">High-level findings and strategic recommendations</div>
+    </div>
+  </div>
+
+  <!-- Score hero -->
+  <div class="score-hero">
+    <div class="score-circle {{ verdict_class }}">
+      <div class="score-number">{{ overall_score }}</div>
+      <div class="score-denom">/ 100</div>
+    </div>
+    <div class="score-info">
+      <div class="score-label-badge {{ verdict_class }}">{{ integrity_label }}</div>
+      <div class="score-summary-text">{{ summary }}</div>
+    </div>
+  </div>
+
+  <!-- Key findings table -->
+  <table class="stats-table" style="margin-bottom:24px;">
+    <tr>
+      <td>Claims Analyzed</td>
+      <td>Contradictions Found</td>
+      <td>Vague Claims</td>
+      <td>Documents Reviewed</td>
+    </tr>
+    <tr>
+      <td>{{ total_claims }}</td>
+      <td>{{ total_contradictions }}</td>
+      <td>{{ vague_claims_count }}</td>
+      <td>{{ documents_reviewed }}</td>
+    </tr>
+  </table>
+
+  <!-- Top 3 critical findings -->
+  <div style="margin-bottom:8px;">
+    <strong style="font-size:10.5pt; color:#1a1a3e;">Top Critical Findings</strong>
+  </div>
+  <ul class="findings-list mb-24">
+    {% for finding in top_findings %}
+    <li>
+      <div class="finding-num">{{ loop.index }}</div>
+      <div>
+        <span class="severity-badge {{ finding.severity }}" style="margin-bottom:4px; display:inline-block;">{{ finding.severity }}</span><br>
+        {{ finding.text }}
+        <span class="text-muted"> — Source: {{ finding.source }}</span>
+      </div>
+    </li>
+    {% else %}
+    <li><div class="finding-num">—</div><div>No critical or high severity contradictions detected.</div></li>
+    {% endfor %}
+  </ul>
+
+  <!-- Recommendations -->
+  <div style="margin-bottom:10px;">
+    <strong style="font-size:10.5pt; color:#1a1a3e;">Recommended Actions</strong>
+  </div>
+  {% for rec in recommendations %}
+  <div class="rec-item">
+    <div class="rec-priority {{ rec.priority }}">{{ rec.priority }}</div>
+    <div class="rec-body">
+      <div class="rec-area">{{ rec.area }}</div>
+      <div class="rec-text">{{ rec.action }}</div>
+      <div class="rec-gain">Potential gain: {{ rec.potential_gain }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 3 — SCORE BREAKDOWN
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page-content">
+  <div class="section-header">
+    <div class="section-number">2</div>
+    <div>
+      <div class="section-title">Score Breakdown</div>
+      <div class="section-subtitle">Category performance and scoring transparency</div>
+    </div>
+  </div>
+
+  <!-- Category bars -->
+  {% for cat in category_scores %}
+  <div class="cat-bar-wrap">
+    <div class="cat-bar-header">
+      <div>
+        <span class="cat-bar-name">{{ cat.display_name }}</span>
+        <span class="text-muted" style="margin-left:10px;">{{ cat.claims_count }} claims · {{ cat.contradictions_count }} contradictions</span>
+      </div>
+      <div class="cat-bar-score" style="color:{{ cat.color }};">{{ cat.score }}<span style="font-size:9pt;color:#94a3b8;">/100</span></div>
+    </div>
+    <div class="cat-bar-track">
+      <div class="cat-bar-fill" style="width:{{ cat.score }}%; background:{{ cat.color }};"></div>
+    </div>
+    {% if cat.notes %}
+    <div style="margin-top:5px; font-size:8pt; color:#64748b;">{{ cat.notes | join(' · ') }}</div>
+    {% endif %}
+  </div>
+  {% endfor %}
+
+  <hr class="divider">
+
+  <!-- Category detail table -->
+  <table class="data-table mb-24">
+    <thead>
+      <tr>
+        <th>ESG Pillar</th>
+        <th>Score</th>
+        <th>Label</th>
+        <th>Contradictions</th>
+        <th>Claims</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cat in category_scores %}
+      <tr>
+        <td><strong>{{ cat.display_name }}</strong></td>
+        <td><strong style="color:{{ cat.color }};">{{ cat.score }}</strong></td>
+        <td>{{ cat.label }}</td>
+        <td>{{ cat.contradictions_count }}</td>
+        <td>{{ cat.claims_count }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Score transparency calculation -->
+  <div style="margin-bottom:10px;">
+    <strong style="font-size:10.5pt; color:#1a1a3e;">Score Calculation Transparency</strong>
+  </div>
+  <div class="score-calc-box">
+    <div class="score-calc-row">
+      <span class="score-calc-label">Starting Score</span>
+      <span class="score-calc-value">100.00</span>
+    </div>
+    {% for adj in adjustments %}
+    <div class="score-calc-row">
+      <span class="score-calc-label">{{ adj.reason }}</span>
+      <span class="score-calc-value {% if adj.points < 0 %}neg{% else %}pos{% endif %}">
+        {% if adj.points > 0 %}+{% endif %}{{ "%.1f"|format(adj.points) }} pts
+      </span>
+    </div>
+    {% endfor %}
+    <div class="score-calc-row">
+      <span class="score-calc-label">⬛ Final ESG Integrity Score</span>
+      <span class="score-calc-value final">{{ overall_score }} / 100</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGES 4+ — CONTRADICTION EVIDENCE CARDS
+     ════════════════════════════════════════════════════════════════ -->
+{% for con in evidence_contradictions %}
+<div class="page-evidence">
+  <div class="evidence-card-header">
+    <div>
+      <div class="evidence-card-title">Contradiction #{{ loop.index }} — Evidence Card</div>
+      <div class="evidence-card-subtitle">
+        Cross-source forensic conflict · Score: {{ con.contradiction_score }} · Category: {{ con.claim_a.category or 'General' }}
+      </div>
+    </div>
+    <span class="severity-badge {{ con.severity }}">{{ con.severity }}</span>
+  </div>
+
+  <!-- Claim box -->
+  <div class="claim-box">
+    <div class="claim-box-label">📄 Claim (Assertion)</div>
+    <div class="claim-quote">"{{ con.claim_a.text }}"</div>
+    <div class="claim-source">
+      Source: {{ con.claim_a.source or 'Unknown' }}
+      <span>{{ con.claim_a.source_type | replace('_', ' ') | title }}</span>
+    </div>
+  </div>
+
+  <!-- Evidence box -->
+  <div class="evidence-box">
+    <div class="evidence-box-label">🚨 Contradicting Evidence</div>
+    <div class="claim-quote">"{{ con.claim_b.text }}"</div>
+    <div class="claim-source">
+      Source: {{ con.claim_b.source or 'Unknown' }}
+      <span>{{ con.claim_b.source_type | replace('_', ' ') | title }}</span>
+    </div>
+  </div>
+
+  <!-- Analysis -->
+  <div class="analysis-box">
+    <div class="analysis-box-label">🔍 Forensic Analysis</div>
+    <div class="analysis-text">
+      {% for reason in con.reasons %}
+      {{ reason }}{% if not loop.last %}<br>{% endif %}
+      {% else %}
+      Semantic similarity score of {{ con.semantic_similarity }} indicates these claims address the same ESG topic.
+      {% if con.polarity_conflict %}The claims carry opposing ESG sentiment — one asserting positive performance while the other documents a violation or negative outcome.{% endif %}
+      {% if con.quantitative_conflict %}Significant quantitative divergence detected between reported figures.{% endif %}
+      {% endfor %}
+    </div>
+    <div class="regulation-row" style="margin-top:12px;">
+      <span>Applicable frameworks:</span>
+      <span class="regulation-tag">GHG Protocol</span>
+      <span class="regulation-tag">TCFD</span>
+      <span class="regulation-tag">SEC ESG Rules</span>
+      <span class="regulation-tag">EU CSRD</span>
+    </div>
+  </div>
+
+  <div style="display:flex; gap:16px; font-size:8.5pt; color:#64748b;">
+    <span>Semantic similarity: <strong>{{ con.semantic_similarity }}</strong></span>
+    <span>Polarity conflict: <strong>{{ 'Yes' if con.polarity_conflict else 'No' }}</strong></span>
+    <span>Quantitative conflict: <strong>{{ 'Yes' if con.quantitative_conflict else 'No' }}</strong></span>
+    <span>Contradiction ID: <strong>{{ con.contradiction_id[:8] | upper }}</strong></span>
+  </div>
+</div>
+{% endfor %}
+
+<!-- ════════════════════════════════════════════════════════════════
+     APPENDIX — VAGUE CLAIMS LOG
+     ════════════════════════════════════════════════════════════════ -->
+<div class="page-appendix">
+  <div class="appendix-header">
+    <span class="appendix-tag">APPENDIX A</span>
+    <div class="appendix-title">Vague &amp; Aspirational Claims Log</div>
+  </div>
+  <p class="text-muted mb-16">
+    The following claims were flagged as insufficiently specific, lacking quantifiable targets or time-bound commitments.
+    Each deducted 1.5 points from the overall integrity score.
+  </p>
+
+  {% if vague_claims %}
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Claim Text</th>
+        <th>Source Type</th>
+        <th>Category</th>
+        <th>Deduction</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for vc in vague_claims %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td style="max-width:280px;">{{ vc.claim_text }}</td>
+        <td>{{ (vc.source_type or 'Unknown') | replace('_', ' ') | title }}</td>
+        <td>{{ (vc.claim_category or 'General') | replace('_', ' ') | title }}</td>
+        <td style="color:#dc2626; font-weight:600;">−1.5 pts</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <p class="text-muted">No vague claims were flagged in this audit.</p>
+  {% endif %}
+
+  <div style="margin-top: 50px; margin-bottom: 20px;">
+    <strong style="font-size:12pt; color:#1a1a3e; text-transform:uppercase; letter-spacing:1px;">AUDITOR'S FINAL CONCLUSION</strong>
+  </div>
+  
+  {% if overall_score >= 85 %}
+  <div style="background: #f0fdf4; border-left: 6px solid #16a34a; padding: 22px 28px; border-radius: 0 8px 8px 0; margin-bottom: 40px;">
+    <strong style="color: #15803d; font-size: 11.5pt;">✅ CLEAN REPORT — Claims appear credible</strong>
+  </div>
+  {% elif overall_score >= 65 %}
+  <div style="background: #fefce8; border-left: 6px solid #eab308; padding: 22px 28px; border-radius: 0 8px 8px 0; margin-bottom: 40px;">
+    <strong style="color: #a16207; font-size: 11.5pt;">⚠️ CONCERNS DETECTED — Verify before trusting</strong>
+  </div>
+  {% elif overall_score >= 40 %}
+  <div style="background: #fff7ed; border-left: 6px solid #ea580c; padding: 22px 28px; border-radius: 0 8px 8px 0; margin-bottom: 40px;">
+    <strong style="color: #c2410c; font-size: 11.5pt;">🔴 LIKELY MISLEADING — Multiple contradictions found. Treat ESG claims with caution.</strong>
+  </div>
+  {% else %}
+  <div style="background: #fef2f2; border-left: 6px solid #dc2626; padding: 22px 28px; border-radius: 0 8px 8px 0; margin-bottom: 40px;">
+    <strong style="color: #991b1b; font-size: 11.5pt;">🚨 FALSIFIED REPORT — Strong evidence of systematic greenwashing. Do not trust ESG claims.</strong>
+  </div>
+  {% endif %}
+
+  <hr class="divider">
+  <div style="font-size:8pt; color:#94a3b8; line-height:1.7;">
+    <strong>Disclaimer:</strong> This report was generated autonomously by TruthLens AI. It is intended as a forensic
+    intelligence tool to assist ESG analysts and is not a substitute for professional legal, financial or auditing advice.
+    All findings should be independently verified before any regulatory or investment decision is made.
+    TruthLens AI accepts no liability for actions taken on the basis of this report.
+  </div>
+</div>
+
+</body>
+</html>

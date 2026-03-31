@@ -1,0 +1,377 @@
+[
+  {
+    "pattern_id": "VL-001",
+    "category": "governance",
+    "severity": "MEDIUM",
+    "pattern_name": "Aspirational Commitment Without Targets",
+    "trigger_phrases": ["we aim to", "committed to", "strive for", "working towards", "aspire to"],
+    "red_flag_condition": "Expresses an ambition or commitment without measurable KPIs or timelines attached to the statement.",
+    "plain_english_explanation": "The company promises to do something good, but hasn't provided a way to measure if they actually achieve it.",
+    "real_world_case": "A fast fashion brand stated they 'aim to reduce waste' but had no numeric waste reduction targets.",
+    "regulatory_reference": "FTC Green Guides § 260.4",
+    "recommended_disclosure": "Replace aspirational language with specific, time-bound, quantified targets."
+  },
+  {
+    "pattern_id": "VL-002",
+    "category": "emissions",
+    "severity": "MEDIUM",
+    "pattern_name": "Undefined 'Eco-Friendly' Label",
+    "trigger_phrases": ["eco-friendly", "green", "sustainable", "climate positive", "earth friendly"],
+    "red_flag_condition": "Uses broad environmental descriptors without specific substantiation inside the claim.",
+    "plain_english_explanation": "Calling a product 'green' or 'eco-friendly' is too vague and often misleads consumers without proof.",
+    "real_world_case": "A major airline claimed 'sustainable flights' based on purchasing standard voluntary offets.",
+    "regulatory_reference": "SEC Climate Disclosure Rules (Proposed) / FTC Green Guides",
+    "recommended_disclosure": "Specify the exact environmental benefit (e.g., 'made with 50% recycled plastic')."
+  },
+  {
+    "pattern_id": "VL-003",
+    "category": "water",
+    "severity": "LOW",
+    "pattern_name": "Future Consideration Deflection",
+    "trigger_phrases": ["exploring options", "will consider", "in the future", "hoping to", "planning to evaluate"],
+    "red_flag_condition": "Pledging to 'think about' a problem rather than taking action.",
+    "plain_english_explanation": "The company is delaying action by saying they are 'evaluating' their options indefinitely.",
+    "real_world_case": "A semiconductor company 'evaluating water reduction technologies' for 5 consecutive years.",
+    "regulatory_reference": "SASB / ISSB General Requirements",
+    "recommended_disclosure": "Disclose actual budgeted investments or concrete implementations."
+  },
+  {
+    "pattern_id": "VL-004",
+    "category": "labor",
+    "severity": "MEDIUM",
+    "pattern_name": "Vague Diversity Vows",
+    "trigger_phrases": ["promote diversity", "inclusive workplace", "value all employees"],
+    "red_flag_condition": "Claiming an inclusive culture but omitting demographic data, pay gap metrics, or board diversity stats.",
+    "plain_english_explanation": "Talking about valuing diversity without showing the actual numbers proving it.",
+    "real_world_case": "A tech firm hailed its 'inclusive culture' while being sued for systemic gender pay disparity.",
+    "regulatory_reference": "EU CSRD (S1 Own Workforce)",
+    "recommended_disclosure": "Publish EEOC data, gender pay gap analysis, and executive diversity targets."
+  },
+
+  {
+    "pattern_id": "S3-001",
+    "category": "emissions",
+    "severity": "CRITICAL",
+    "pattern_name": "Net Zero Without Scope 3",
+    "trigger_phrases": ["net zero", "carbon neutral", "zero emissions"],
+    "red_flag_condition": "Claims net zero but no Scope 3 methodology (supply chain/product use) is disclosed or it is explicitly excluded.",
+    "plain_english_explanation": "The company claims it produces zero carbon, but it's ignoring the massive emissions from making and using its products.",
+    "real_world_case": "A major oil company claimed 'Net Zero operations', ignoring the emissions from customers burning its fuel (Scope 3).",
+    "regulatory_reference": "GHG Protocol Corporate Value Chain Standard / EU CSRD",
+    "recommended_disclosure": "Explicitly state whether the Net Zero claim includes Scope 1, 2, AND 3 emissions."
+  },
+  {
+    "pattern_id": "S3-002",
+    "category": "supply_chain",
+    "severity": "HIGH",
+    "pattern_name": "Selective Boundary Setting",
+    "trigger_phrases": ["our operations", "direct emissions", "facilities we own"],
+    "red_flag_condition": "Emphasizing emissions reductions strictly in 'owned operations' when the vast majority of emissions are upstream or downstream.",
+    "plain_english_explanation": "Boasting about clean offices while the outsourced factories are heavily polluting.",
+    "real_world_case": "An electronics giant claimed '100% renewable energy' but only for its retail stores, not its manufacturing hubs.",
+    "regulatory_reference": "SBTi Criteria",
+    "recommended_disclosure": "Report full value-chain emissions boundary alongside operational metrics."
+  },
+  {
+    "pattern_id": "S3-003",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Scope 3 'Data Quality' Excuse",
+    "trigger_phrases": ["due to data limitations", "estimating scope 3 is difficult", "methodological challenges", "omitted scope 3"],
+    "red_flag_condition": "Refusing to report Scope 3 emissions by citing lack of primary data, instead of using approved secondary industry averages.",
+    "plain_english_explanation": "Saying 'it's too hard to calculate' to avoid revealing the largest chunk of their carbon footprint.",
+    "real_world_case": "An automaker omitted supply chain emissions from its ESG report claiming supplier data was 'unverifiable'.",
+    "regulatory_reference": "ISSB IFRS S2",
+    "recommended_disclosure": "Use GHG Protocol sanctioned secondary data/spend-based models to estimate Scope 3 until primary data improves."
+  },
+
+  {
+    "pattern_id": "OF-001",
+    "category": "emissions",
+    "severity": "CRITICAL",
+    "pattern_name": "Cheap Offset Erasure",
+    "trigger_phrases": ["purchased carbon credits", "offsetting", "carbon neutral products", "voluntary credits"],
+    "red_flag_condition": "Achieving 'carbon neutrality' primarily through purchasing unverified or low-quality avoided-deforestation (REDD+) offsets instead of actual decarbonization.",
+    "plain_english_explanation": "Buying cheap 'carbon credits' to claim they are clean, without actually changing how much they pollute.",
+    "real_world_case": "A multinational achieved 'Carbon Neutrality' by buying $1-per-ton phantom forestry credits that did not actually prevent deforestation.",
+    "regulatory_reference": "VCMI Claims Code of Practice / SBTi Net Zero Standard",
+    "recommended_disclosure": "Disclose the exact registry, vintage, type, and cost of purchased offsets, and prioritize direct abatement."
+  },
+  {
+    "pattern_id": "OF-002",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Future Tech Reliance",
+    "trigger_phrases": ["carbon capture", "direct air capture", "ccus", "future technologies"],
+    "red_flag_condition": "Basing near-term or mid-term climate targets on unproven or currently unscalable Carbon Capture (CCUS) technologies.",
+    "plain_english_explanation": "Promising to fix pollution using sci-fi technology that doesn't exist at scale yet.",
+    "real_world_case": "An energy major projected meeting its 2030 goals by relying on Direct Air Capture plants that haven't been built yet.",
+    "regulatory_reference": "IEA Net Zero by 2050 framework",
+    "recommended_disclosure": "Separate engineering-based emission reductions from speculative technological removals."
+  },
+  {
+    "pattern_id": "OF-003",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Nature-Based Solution Overestimation",
+    "trigger_phrases": ["planting trees", "reforestation initiative", "nature-based", "one tree planted"],
+    "red_flag_condition": "Using tree-planting PR campaigns to mask increasing industrial emissions.",
+    "plain_english_explanation": "Planting trees as a distraction while still increasing the amount of pollution pumped into the air.",
+    "real_world_case": "A logistics company advertised 'planting 1 million trees' while its fleet emissions grew by 15%.",
+    "regulatory_reference": "Oxford Principles for Net Zero Aligned Carbon Offsetting",
+    "recommended_disclosure": "Report gross emissions prior to, and independent of, reforestation initiatives."
+  },
+
+  {
+    "pattern_id": "REC-001",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Unbundled REC Shell Game",
+    "trigger_phrases": ["100% renewable", "powered by wind", "powered by solar", "matched with renewable"],
+    "red_flag_condition": "Claiming 100% renewable energy by purchasing cheap, unbundled RECs from a different grid than where the power is actually consumed.",
+    "plain_english_explanation": "Running a factory on dirty coal power, but buying a cheap 'certificate' from a wind farm in another country to claim the factory is green.",
+    "real_world_case": "A European datacentre claimed '100% wind power' by buying Norwegian hydro certificates while physically drawing coal power in Poland.",
+    "regulatory_reference": "GHG Protocol Scope 2 Guidance (Market-based vs Location-based)",
+    "recommended_disclosure": "Disclose both Location-Based and Market-Based Scope 2 emissions, and mandate temporally/spatially matched RECs."
+  },
+  {
+    "pattern_id": "REC-002",
+    "category": "emissions",
+    "severity": "MEDIUM",
+    "pattern_name": "PPA Overselling",
+    "trigger_phrases": ["signed a PPA", "virtual power purchase", "investing in renewables"],
+    "red_flag_condition": "Touting virtual PPAs as eliminating emissions without accounting for the intermittency (hourly matching) of the grid.",
+    "plain_english_explanation": "Claiming the sun powers their servers 24/7, even though solar panels don't work at night and they rely on fossil fuels when it's dark.",
+    "real_world_case": "Tech companies claiming 100% renewable matching annually, while heavily relying on fossil peaking plants at night.",
+    "regulatory_reference": "24/7 Carbon-Free Energy Compact",
+    "recommended_disclosure": "Transition to 24/7 hourly matching disclosures rather than annual volumetric REC matching."
+  },
+
+  {
+    "pattern_id": "TM-001",
+    "category": "emissions",
+    "severity": "CRITICAL",
+    "pattern_name": "The Phantom 2050 Goal",
+    "trigger_phrases": ["net zero by 2050", "by 2050", "mid-century", "long-term goal"],
+    "red_flag_condition": "Setting a distant 2050 Net Zero goal without explicit near-term (e.g., 2030) science-based interim targets.",
+    "plain_english_explanation": "Promising to fix the problem in 25 years when the current CEO will be long retired, with zero plan for what to do today.",
+    "real_world_case": "A bank announced 'Net Zero 2050' but refused to set a 2030 phase-out timeline for coal financing.",
+    "regulatory_reference": "SBTi Corporate Net-Zero Standard (Near-Term Targets)",
+    "recommended_disclosure": "Publish binding 5-year interim targets verified by a third-party science standard."
+  },
+  {
+    "pattern_id": "TM-002",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Backloaded Trajectories",
+    "trigger_phrases": ["ramp up", "accelerate in the 2030s", "scalable after 2030"],
+    "red_flag_condition": "Showing an emissions trajectory that remains flat for a decade and relies on a steep, mathematically improbable drop right before the deadline year.",
+    "plain_english_explanation": "Planning to do almost nothing for ten years, and then magically fix everything in the final year.",
+    "real_world_case": "A shipping firm's decarbonization chart showed emissions rising until 2035, abruptly plunging to zero by 2040.",
+    "regulatory_reference": "TCFD / Transition Plan Taskforce (TPT)",
+    "recommended_disclosure": "Provide a cumulative carbon budget curve rather than a single end-point goal."
+  },
+
+  {
+    "pattern_id": "SC-001",
+    "category": "supply_chain",
+    "severity": "HIGH",
+    "pattern_name": "Tier 1 Tunnel Vision",
+    "trigger_phrases": ["audited our suppliers", "supplier code of conduct", "ethical sourcing"],
+    "red_flag_condition": "Claiming full ethical sourcing by only auditing Tier 1 (direct) suppliers, ignoring the forced labor or environmental risks deep in Tier 3/4 material extraction.",
+    "plain_english_explanation": "Checking the factory that sews the shirt, but ignoring the child labor at the farm that picked the cotton.",
+    "real_world_case": "A smartphone brand claimed 'conflict-free minerals' by auditing smelters, ignoring the actual undocumented mines supplying the smelters.",
+    "regulatory_reference": "EU CSDDD (Corporate Sustainability Due Diligence Directive)",
+    "recommended_disclosure": "Disclose supply chain traceability depth mapping beyond Tier 1 down to raw material origin."
+  },
+  {
+    "pattern_id": "SC-002",
+    "category": "supply_chain",
+    "severity": "MEDIUM",
+    "pattern_name": "Deflecting to Supplier Codes",
+    "trigger_phrases": ["require suppliers to", "supplier guidelines", "expectation"],
+    "red_flag_condition": "Citing a 'Supplier Code of Conduct' as proof of ESG compliance without disclosing independent audit results or non-compliance rates.",
+    "plain_english_explanation": "Saying 'we told them the rules' as an excuse, without ever checking if anyone actually follows them.",
+    "real_world_case": "A retailer claimed 'fair labor practices' because suppliers signed a PDF, while investigative journalists found sweatshops.",
+    "regulatory_reference": "Uyghur Forced Labor Prevention Act (UFLPA) / UK Modern Slavery Act",
+    "recommended_disclosure": "Publish the percentage of suppliers physically audited and the list of corrective actions taken."
+  },
+
+  {
+    "pattern_id": "BM-001",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Cherry-Picked Baselines",
+    "trigger_phrases": ["compared to baseline", "reduction since", "compared to 2018"],
+    "red_flag_condition": "Choosing an abnormally high emissions year (or a year right before a huge divestment/pandemic) as the baseline to artificially inflate the 'reduction' percentage.",
+    "plain_english_explanation": "Comparing today's pollution to naturally their worst year ever, just to make today look like a huge improvement.",
+    "real_world_case": "An airline used 2019 (peak travel) as a baseline against 2021 (pandemic lockdowns) to claim 'massive structural decarbonization'.",
+    "regulatory_reference": "GHG Protocol Corporate Standard (Base Year Recalculation)",
+    "recommended_disclosure": "Standardize baselines against a normal operational average and restate baselines during major M&A activity."
+  },
+  {
+    "pattern_id": "BM-002",
+    "category": "emissions",
+    "severity": "MEDIUM",
+    "pattern_name": "Acquisition Amnesia",
+    "trigger_phrases": ["structural reduction", "divested", "portfolio optimization"],
+    "red_flag_condition": "Claiming a massive carbon reduction that was achieved entirely by selling off a dirty division to another company, rather than actually reducing atmospheric carbon.",
+    "plain_english_explanation": "Bragging about cutting pollution because they sold their dirty coal plant to someone else who is still running it.",
+    "real_world_case": "A mining giant 'cut 40% of emissions' by simply spinning off its thermal coal assets into a new independent company.",
+    "regulatory_reference": "SBTi Target Recalculation Protocol",
+    "recommended_disclosure": "Omit divested assets from structural decarbonization progress metrics to reflect real-world emissions."
+  },
+
+  {
+    "pattern_id": "AM-001",
+    "category": "emissions",
+    "severity": "HIGH",
+    "pattern_name": "Intensity Metric Camouflage",
+    "trigger_phrases": ["carbon intensity", "emissions per million", "emissions per product"],
+    "red_flag_condition": "Highlighting reductions in carbon *intensity* (per product) while absolute, total atmospheric carbon emissions are actually going up due to business growth.",
+    "plain_english_explanation": "Bragging that each widget is 10% cleaner to make, while ignoring the fact they are making 100 times more widgets and polluting more overall.",
+    "real_world_case": "An oil company boasted 'a 15% reduction in carbon intensity per barrel', while their total annual emissions rose by 5 million tons.",
+    "regulatory_reference": "TCFD Metrics and Targets",
+    "recommended_disclosure": "Always mandate reporting Absolute emissions alongside Intensity metrics."
+  },
+  {
+    "pattern_id": "AM-002",
+    "category": "water",
+    "severity": "MEDIUM",
+    "pattern_name": "Relative Water Dilution",
+    "trigger_phrases": ["water intensity", "gallons per unit", "water efficiency"],
+    "red_flag_condition": "Focusing solely on efficiency gains per unit in highly water-stressed regions, masking total basin depletion rates.",
+    "plain_english_explanation": "Saying they waste less water per shirt, but ignoring that their new mega-factory is draining a drought-stricken local river.",
+    "real_world_case": "A beverage maker improved 'water efficiency by 5%' but doubled production in a drought-declared region.",
+    "regulatory_reference": "CDP Water Security Questionnaire",
+    "recommended_disclosure": "Contextualize volumetric withdrawals against local watershed scarcity levels."
+  },
+
+  {
+    "pattern_id": "GV-001",
+    "category": "governance",
+    "severity": "HIGH",
+    "pattern_name": "Toothless Executive Compensation",
+    "trigger_phrases": ["ESG-linked pay", "tied to sustainability", "remuneration"],
+    "red_flag_condition": "Claiming executive bonuses are tied to ESG, but the ESG metric only accounts for 1-5% of the bonus, or the metrics are purely qualitative/subjective.",
+    "plain_english_explanation": "Saying the CEO's pay depends on being green, but it's actually 99% based on stock price and 1% based on a vague 'diversity' feeling.",
+    "real_world_case": "A CEO received a maximum 'ESG bonus' for 'advancing safety culture' the same year the company had a major chemical spill.",
+    "regulatory_reference": "ISS / Glass Lewis Proxy Voting Guidelines",
+    "recommended_disclosure": "Link at least 15%+ of executive variable pay to hard, audited, quantitative environmental targets."
+  },
+  {
+    "pattern_id": "GV-002",
+    "category": "governance",
+    "severity": "HIGH",
+    "pattern_name": "Lobbying Contradiction",
+    "trigger_phrases": ["support the Paris Agreement", "climate advocate", "green policy"],
+    "red_flag_condition": "Publicly supporting climate agreements while covertly funding trade associations or lobbying groups that actively fight against climate regulations.",
+    "plain_english_explanation": "Writing press releases about saving the earth, while secretly paying politicians to block environmental laws.",
+    "real_world_case": "A massive tech coalition publicly championed the Paris Accord while aggressively funding political action committees blocking clean energy bills.",
+    "regulatory_reference": "UN High-Level Expert Group on Net-Zero (Integrity Matters)",
+    "recommended_disclosure": "Publish a comprehensive direct and indirect (trade association) climate lobbying alignment review."
+  },
+
+  {
+    "pattern_id": "LB-001",
+    "category": "labor",
+    "severity": "CRITICAL",
+    "pattern_name": "Living Wage Evasion",
+    "trigger_phrases": ["competitive pay", "above minimum wage", "industry standard pay"],
+    "red_flag_condition": "Touting 'competitive salaries' that meet legal minimums but blatantly fall below established independent Living Wage thresholds for the region.",
+    "plain_english_explanation": "Bragging about paying legal minimum wage in countries where the minimum wage isn't actually enough to survive on.",
+    "real_world_case": "A garment brand praised its 'fair pay' initiatives because it paid 10% over the legal minimum wage in Bangladesh, which was still just $4/day.",
+    "regulatory_reference": "ILO Conventions / Global Living Wage Coalition",
+    "recommended_disclosure": "Disclose the gap between lowest earner base pay and the regional independent Living Wage benchmark."
+  },
+  {
+    "pattern_id": "LB-002",
+    "category": "labor",
+    "severity": "HIGH",
+    "pattern_name": "Health & Safety 'Zero Harm' Illusion",
+    "trigger_phrases": ["zero harm", "safety first", "lost time injury rate", "LTIFR"],
+    "red_flag_condition": "Flaunting a low injury rate by only tracking direct employees while ignoring horrific accident rates involving sub-contractors or gig workers.",
+    "plain_english_explanation": "Claiming the workplace is perfectly safe because they don't count the delivery drivers who are technically 'independent contractors'.",
+    "real_world_case": "An e-commerce giant reported excellent safety stats in corporate warehouses while outsourced last-mile delivery drivers suffered massive accident spikes.",
+    "regulatory_reference": "GRI 403: Occupational Health and Safety",
+    "recommended_disclosure": "Mandate consolidated safety rate reporting including gig workers and sub-contractors operating on behalf of the company."
+  },
+
+  {
+    "pattern_id": "BI-001",
+    "category": "water",
+    "severity": "HIGH",
+    "pattern_name": "Biodiversity 'No Net Loss' Mirage",
+    "trigger_phrases": ["no net loss", "nature positive", "biodiversity offset"],
+    "red_flag_condition": "Destroying pristine ecosystems (e.g., ancient wetlands) and claiming 'no net loss' by restoring degraded land miles away that lacks the same ecological value.",
+    "plain_english_explanation": "Bulldozing a unique 1,000-year-old forest and saying it's fine because they planted some generic pine trees near a highway.",
+    "real_world_case": "A mining operation destroyed rare orchid habitats but claimed biodiversity compliance by funding a generic grass restoration project elsewhere.",
+    "regulatory_reference": "TNFD (Taskforce on Nature-related Financial Disclosures)",
+    "recommended_disclosure": "Adhere strictly to the mitigation hierarchy: avoid, minimize, restore, and only offset as an absolute last resort with like-for-like ecology."
+  },
+
+  {
+    "pattern_id": "CE-001",
+    "category": "water",
+    "severity": "MEDIUM",
+    "pattern_name": "Theoretical Circularity",
+    "trigger_phrases": ["100% recyclable", "designed for recycling", "circular economy"],
+    "red_flag_condition": "Labeling products as '100% recyclable' when municipal recovery infrastructure does not exist to actually recycle them in 90% of the market.",
+    "plain_english_explanation": "Sticking a recycle logo on a plastic cup that cities physically cannot recycle, tricking consumers into thinking it won't go to a landfill.",
+    "real_world_case": "Coffee pods labeled '100% recyclable' required consumers to manually disassemble them with a knife; 99% ended up in landfills.",
+    "regulatory_reference": "Ellen MacArthur Foundation / FTC Green Guides",
+    "recommended_disclosure": "Disclose the actual Post-Consumer Recycled content percentage instead of theoretical end-of-life recyclability."
+  },
+
+  {
+    "pattern_id": "RP-001",
+    "category": "governance",
+    "severity": "HIGH",
+    "pattern_name": "Unaudited ESG Metrics",
+    "trigger_phrases": ["internal data", "proprietary methodology", "our calculations show"],
+    "red_flag_condition": "Publishing thousands of data points in a glossy ESG report without obtaining Limited or Reasonable Assurance from an independent auditor.",
+    "plain_english_explanation": "Writing their own report card and giving themselves an A+, without letting anyone double-check the math.",
+    "real_world_case": "A fashion brand inflated its 'recycled cotton' use by 300% because the metric was tracked internally on an Excel sheet with zero external audit.",
+    "regulatory_reference": "ISAE 3000 / CSRD Mandatory Assurance",
+    "recommended_disclosure": "Subject all Tier-1 ESG metrics to independent third-party reasonable assurance."
+  },
+
+  {
+    "pattern_id": "MS-001",
+    "category": "emissions",
+    "severity": "MEDIUM",
+    "pattern_name": "Fractional Product Highlighting",
+    "trigger_phrases": ["our new green line", "sustainable collection", "conscious product"],
+    "red_flag_condition": "Spending 80% of an ESG report marketing a 'sustainable' product line that only accounts for 1% of total company revenue/production.",
+    "plain_english_explanation": "Running global TV ads about recycled sneakers, even though 99% of the sneakers they make are still made of virgin petroleum plastic.",
+    "real_world_case": "A fast fashion brand launched a heavily promoted 'Conscious Collection' that represented less than 2% of the garments they manufactured that year.",
+    "regulatory_reference": "EU Green Claims Directive",
+    "recommended_disclosure": "Ensure sustainability marketing budgets are proportionate to the actual revenue/impact weight of the sustainable product."
+  },
+
+  {
+    "pattern_id": "MS-002",
+    "category": "social",
+    "severity": "LOW",
+    "pattern_name": "Philanthropy Washing",
+    "trigger_phrases": ["donated", "charitable giving", "community investment", "sponsored"],
+    "red_flag_condition": "Using high-profile charitable donations to mask negative impacts directly caused by the company's core business model.",
+    "plain_english_explanation": "Donating a million dollars to a lung-cancer charity while making billions selling cigarettes.",
+    "real_world_case": "A major plastics manufacturer highlighted its $2M donation to ocean cleanup charities while lobbying to block single-use plastic bans.",
+    "regulatory_reference": "GRI 413: Local Communities",
+    "recommended_disclosure": "Separate philanthropy metrics from core operational ESG impact mitigating activities."
+  },
+
+  {
+    "pattern_id": "SC-003",
+    "category": "supply_chain",
+    "severity": "CRITICAL",
+    "pattern_name": "Deforestation Omission",
+    "trigger_phrases": ["sustainable agriculture", "certified sustainable", "RSPO", "zero deforestation committed"],
+    "red_flag_condition": "Claiming deforestation-free supply chains by relying heavily on mass-balance certificates rather than fully segregated, traced physical supply.",
+    "plain_english_explanation": "Paying for a 'sustainable' sticker for their palm oil, even though the actual oil they buy comes from freshly burned rainforests.",
+    "real_world_case": "A snack company touted 'Zero Deforestation protocols' while purchasing commodity soy untraceable back to the specific farm plots in the Amazon.",
+    "regulatory_reference": "EU Deforestation Regulation (EUDR)",
+    "recommended_disclosure": "Transition from mass-balance certification reliance to 100% geolocation-traced physical segregation."
+  }
+]
