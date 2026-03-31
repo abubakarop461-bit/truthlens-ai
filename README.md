@@ -42,8 +42,11 @@ npm run dev
 
 ## Screenshots
 
-<!-- Example Dashboard Flow Placeholder -->
-![Audit Dashboard UI Blueprint](/placeholder)
-  
-<!-- Example Forensic Analysis PDF Placeholder -->
-![Forensic Analysis PDF Blueprint](/placeholder)
+### Landing Page
+![Landing Page](screenshots/landing.png)
+
+### New Audit Form
+![Audit Form](screenshots/audit.png)
+
+### Results Dashboard
+![Results Dashboard](screenshots/results.png)
